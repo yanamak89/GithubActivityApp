@@ -59,11 +59,14 @@ class Program
             Console.WriteLine("[Using Cached Data]");
             return cachedData;
         }
+        Console.WriteLine("[No cache found, fetching fresh data...]");
         return null;
     }
 
     private static void CacheData(string username, string jsonData)
     {
+        Console.WriteLine("[Caching fresh data...]");
+        Console.WriteLine($"Cached data: {jsonData.Substring(0, Math.Min(200, jsonData.Length))}...");
         cache.StringSet(username, jsonData, TimeSpan.FromMinutes(10));
     }
 
